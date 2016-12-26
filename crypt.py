@@ -89,6 +89,7 @@ def allfiles():
                         allFiles.append(os.path.join(root, names))
  
         return allFiles
+# essa função não está retornando a senha gerada... help me!!!!!
 
 def generated_key(size):
         caracters = '~{}^=+()@#$%*¨&ABCDEFGHIJKLMNOPQRSTUVXZY0123456789abcdefghijlmnopqrstuwvxz'
@@ -97,7 +98,7 @@ def generated_key(size):
                 password += choice(caracters)
         return password
 print generated_key
-
+###
 password = raw_input("Generatedd the key?")      
 choice = raw_input("Do you want to (E)ncrypt or (D)ecrypt? ")
 
@@ -131,7 +132,7 @@ elif choice == "D":
                 print "Done decrypting %s" %filename
                 
                 os.remove(filename) 
-
+### passar a senha em um I/O e para um arquivo em texto..... 
 elif password == 'G':
         
          print password
