@@ -1,14 +1,15 @@
-#!/usr/bin/env python
-# -* coding: utf-8 -*- 
+## function to generate key 
 
-from random import choice
+## As soon as the files are encrypted ## 
 
-def gera_senha(tamanho):
-        caracters = '~{}^=+()@#$%*¨&ABCDEFGHIJKLMNOPQRSTUVXZY0123456789abcdefghijlmnopqrstuwvxz'
-        senha = ''
-        for char in xrange(tamanho):
-                senha += choice(caracters)
-        return  senha
+## help with the bugs i'll apreciatte! 
 
-print gera_senha(18) 
+def generated_key(size):
+        caracters = '~{}^=+()@#$%*¨\/[]&ABCDEFGHIJKLMNOPQRSTUVXZY0123456789abcdefghijlmnopqrstuwvxz'
+        password = ''
+        for char in xrange(size):
+                password += choice(caracters)
+        return  password
+
+print generated_key(18) 
 
